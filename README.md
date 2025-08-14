@@ -2,6 +2,8 @@
 
 A complete blockchain-powered game platform comprising smart contracts, backend API, web frontend, and leaderboard functionality.
 
+[![Node.js CI](https://github.com/aryan9653/blochchain-game/actions/workflows/node.js.yml/badge.svg)](https://github.com/aryan9653/blochchain-game/actions/workflows/node.js.yml)
+
 ## Table of Contents
 
 * [Overview](#overview)
