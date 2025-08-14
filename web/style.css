@@ -1,0 +1,210 @@
+/* --- Global Setup & Fonts --- */
+:root {
+    --bg-dark: #0D1117;
+    --bg-medium: #161B22;
+    --border-color: #30363D;
+    --primary-color: #58A6FF;
+    --success-color: #3FB950;
+    --warning-color: #F7B93E;
+    --text-light: #C9D1D9;
+    --text-dark: #8B949E;
+    font-family: 'Roboto', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-size: 16px;
+}
+
+h1, h2, h3, h4, .logo { font-family: 'Orbitron', sans-serif; }
+
+/* --- Landing Page --- */
+#landing-page {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+.landing-header h1 { font-size: 3rem; color: var(--primary-color); }
+.landing-header p { font-size: 1.2rem; color: var(--text-dark); }
+.hero { margin: 4rem 0; }
+.hero h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 4rem; }
+.feature-card { background: var(--bg-medium); padding: 2rem; border-radius: 8px; border: 1px solid var(--border-color); }
+.feature-card i { font-size: 2rem; color: var(--primary-color); margin-bottom: 1rem; }
+.connect-wallet-section { background: var(--bg-medium); padding: 3rem; border-radius: 8px; }
+.terms { font-size: 0.8rem; color: var(--text-dark); margin-top: 1rem; }
+
+
+/* --- Main Dashboard Layout --- */
+#dashboard-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 1.5rem;
+}
+.dashboard-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+.logo { font-size: 1.5rem; }
+.user-info { text-align: right; }
+.user-info .address { font-size: 0.9rem; color: var(--text-dark); }
+.balances { font-weight: 700; }
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 240px 1fr 320px;
+    grid-template-areas: "nav main aside";
+    gap: 1.5rem;
+    flex-grow: 1;
+    height: calc(100vh - 120px);
+}
+.dashboard-nav { grid-area: nav; }
+.dashboard-main { grid-area: main; }
+.dashboard-aside { grid-area: aside; }
+
+/* --- Dashboard Components --- */
+.nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    padding: 1rem;
+    background: none;
+    border: none;
+    color: var(--text-dark);
+    font-size: 1rem;
+    text-align: left;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.nav-btn:hover { background-color: var(--bg-medium); color: var(--text-light); }
+.nav-btn.active { background-color: rgba(88, 166, 255, 0.1); color: var(--primary-color); font-weight: 700; }
+.widget {
+    background: var(--bg-medium);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.widget h3 { margin-bottom: 1.5rem; }
+
+/* Staking Widget */
+.stake-widget { text-align: center; }
+.stake-options { margin: 2rem 0; }
+.stake-buttons { display: flex; justify-content: center; gap: 0.5rem; margin-top: 0.5rem; }
+.stake-btn {
+    background-color: var(--bg-dark);
+    border: 1px solid var(--border-color);
+    color: var(--text-light);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.stake-btn.active { border-color: var(--primary-color); color: var(--primary-color); }
+.stake-summary { display: flex; justify-content: space-around; background: var(--bg-dark); padding: 1rem; border-radius: 6px; margin: 2rem 0; }
+.stake-summary div { display: flex; flex-direction: column; gap: 0.25rem; }
+.stake-summary span { font-size: 0.9rem; color: var(--text-dark); }
+
+/* Other Widgets */
+.balance-display { margin-bottom: 0.5rem; }
+.purchase-group { display: flex; gap: 0.5rem; margin-top: 0.5rem; }
+.purchase-group input { width: 100%; }
+.stats-grid { display: grid; grid-template-columns: 1fr auto; gap: 1rem 2rem; align-items: center; }
+.stats-grid div { color: var(--text-dark); }
+
+/* --- Modals --- */
+#modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.3s ease;
+}
+#modal-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+.modal {
+    background: var(--bg-medium);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2rem;
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+    display: none; /* JS will handle showing */
+}
+#match-found-modal h2 { margin-bottom: 1rem; }
+.opponent-info { margin-bottom: 2rem; }
+
+/* In-Game Modal & Tic-Tac-Toe */
+#game-modal { max-width: 800px; }
+.game-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+.game-timer { font-size: 1.2rem; }
+.game-body { display: grid; grid-template-columns: 1fr 320px 1fr; align-items: center; gap: 2rem; }
+#tic-tac-toe-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    width: 300px; height: 300px;
+    gap: 10px;
+}
+.cell {
+    background: var(--bg-dark);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    display: flex; justify-content: center; align-items: center;
+    font-size: 4rem; font-family: 'Orbitron', sans-serif;
+    cursor: pointer; transition: background-color 0.2s ease;
+}
+.cell:not(.disabled):hover { background-color: #30363D; }
+.cell.X { color: var(--primary-color); }
+.cell.O { color: var(--success-color); }
+.cell.disabled { cursor: not-allowed; }
+
+.game-player-card { padding: 1rem; border-radius: 8px; }
+.game-player-card.left { text-align: left; }
+.game-player-card.right { text-align: right; }
+.turn-indicator {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 6px;
+    opacity: 0.3;
+}
+.turn-indicator.active {
+    background-color: var(--success-color);
+    color: var(--bg-dark);
+    opacity: 1;
+    font-weight: 700;
+}
+
+.game-footer { margin-top: 1.5rem; color: var(--text-dark); }
+
+
+/* --- General Utility Classes --- */
+.btn { /* ... Basic button styles from before ... */ }
+.btn-large { padding: 1rem 2rem; font-size: 1.1rem; }
+input[type="number"] { /* ... Basic input styles from before ... */ }
+.hidden { display: none !important; }
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .dashboard-grid {
+        grid-template-columns: 240px 1fr;
+        grid-template-areas: "nav main" "aside main";
+    }
+}
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas: "nav" "main" "aside";
+        height: auto;
+    }
+    #dashboard-page { height: auto; }
+}

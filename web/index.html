@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TriX Gaming - Blockchain Gaming Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="toast-container"></div>
+    <div class="background-overlay"></div>
+
+    <div id="landing-page">
+        <header class="landing-header">
+            <h1><i class="fas fa-dice-d20"></i> TriX Gaming</h1>
+            <p>Blockchain Gaming Platform</p>
+        </header>
+        <main class="landing-main">
+            <section class="hero">
+                <h2>Welcome to TriX Gaming</h2>
+                <p>The next-generation blockchain gaming platform. Stake tokens, play games, and earn rewards in real-time.</p>
+            </section>
+            <section class="features">
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Secure & Trustless</h3>
+                    <p>All transactions secured by smart contracts on the blockchain.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Real-time Gaming</h3>
+                    <p>Live matchmaking with instant token staking and payouts.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-trophy"></i>
+                    <h3>Competitive Play</h3>
+                    <p>Climb the leaderboard and earn rewards for your skills.</p>
+                </div>
+            </section>
+            <section class="connect-wallet-section">
+                <h3>Connect Your Wallet</h3>
+                <p>Connect your MetaMask wallet to start playing and earning tokens.</p>
+                <button id="connectWalletBtn" class="btn btn-primary btn-large">
+                    <span class="btn-text"><i class="fas fa-wallet"></i> Connect MetaMask</span>
+                    <div class="spinner" style="display: none;"></div>
+                </button>
+                <p class="terms">By connecting, you agree to our Terms of Service and Privacy Policy.</p>
+            </section>
+        </main>
+    </div>
+
+    <div id="dashboard-page" style="display: none;">
+        <header class="dashboard-header">
+            <div class="logo">
+                <i class="fas fa-dice-d20"></i> TriX Gaming
+            </div>
+            <div class="user-info">
+                <span id="user-address" class="address">0x000...0000</span>
+                <div class="balances">
+                    <span id="gt-balance">0 GT</span> • <span id="usdt-balance">0 USDT</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="dashboard-grid">
+            <nav class="dashboard-nav">
+                <button class="nav-btn active" data-view="play-game-view"><i class="fas fa-gamepad"></i> Play Game</button>
+                <button class="nav-btn" data-view="leaderboard-view"><i class="fas fa-trophy"></i> Leaderboard</button>
+                <button class="nav-btn" data-view="history-view"><i class="fas fa-history"></i> History</button>
+            </nav>
+
+            <main class="dashboard-main">
+                <div id="play-game-view" class="view active">
+                    <div class="widget stake-widget">
+                        <h3>Find Match</h3>
+                        <p>Tic Tac Toe</p>
+                        <div class="stake-options">
+                            <h4>Stake Amount (GT)</h4>
+                            <div class="stake-buttons">
+                                <button class="stake-btn" data-stake="50">50 GT</button>
+                                <button class="stake-btn active" data-stake="100">100 GT</button>
+                                <button class="stake-btn" data-stake="250">250 GT</button>
+                                <button class="stake-btn" data-stake="500">500 GT</button>
+                            </div>
+                        </div>
+                        <div class="stake-summary">
+                            <div><span>Winner Gets</span><strong id="winner-gets">200 GT</strong></div>
+                            <div><span>Your Risk</span><strong id="your-risk">100 GT</strong></div>
+                        </div>
+                        <button id="findMatchBtn" class="btn btn-primary btn-large">
+                             <span class="btn-text">Find Match (100 GT)</span>
+                             <div class="spinner" style="display: none;"></div>
+                        </button>
+                    </div>
+                </div>
+                 <div id="leaderboard-view" class="view" style="display: none;"><div class="widget"><h3>Leaderboard</h3><p>Coming soon...</p></div></div>
+                <div id="history-view" class="view" style="display: none;"><div class="widget"><h3>Match History</h3><p>Coming soon...</p></div></div>
+            </main>
+
+            <aside class="dashboard-aside">
+                <div class="widget">
+                    <h3>Token Manager</h3>
+                    <div class="balance-display">GT Balance: <strong id="token-manager-gt-balance">1,000</strong></div>
+                    <div class="balance-display">USDT Balance: <strong id="token-manager-usdt-balance">5,000</strong></div>
+                    <p>Purchase GT Tokens <small>(1 USDT = 10 GT)</small></p>
+                    <div class="purchase-group">
+                        <input type="number" id="usdt-amount" placeholder="USDT">
+                        <button id="purchaseBtn" class="btn btn-success">Purchase <span id="purchase-amount-gt">0</span> GT</button>
+                    </div>
+                </div>
+                <div class="widget">
+                    <h3>Quick Stats</h3>
+                    <div class="stats-grid">
+                        <div>Win Rate</div><strong id="win-rate">0%</strong>
+                        <div>Total Games</div><strong id="total-games">0</strong>
+                        <div>Total Staked</div><strong id="total-staked">0 GT</strong>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <div id="modal-overlay" class="hidden">
+        <div id="match-found-modal" class="modal">
+            <h2>Match Found!</h2>
+            <div class="opponent-info">
+                <p>Opponent: <strong id="opponent-name"></strong></p>
+                <small id="opponent-stats"></small>
+            </div>
+            <div class="stake-summary">
+                <div><span>Your Stake</span><strong id="confirm-your-stake">100 GT</strong></div>
+                <div><span>Potential Win</span><strong id="confirm-potential-win">200 GT</strong></div>
+            </div>
+            <button id="confirm-stake-btn" class="btn btn-success btn-large">Confirm Stake & Start Game</button>
+        </div>
+
+        <div id="game-modal" class="modal">
+            <div class="game-header">
+                <h3>Tic Tac Toe Battle</h3>
+                <div class="game-timer"><i class="fas fa-clock"></i> <span id="game-timer-display">30s</span></div>
+            </div>
+            <div class="game-body">
+                <div class="game-player-card left">
+                    <p class="player-name">You (<span id="your-symbol">X</span>)</p>
+                    <small id="your-address-ingame"></small>
+                    <div class="turn-indicator active">Your Turn</div>
+                </div>
+                <div id="tic-tac-toe-board"></div>
+                <div class="game-player-card right">
+                    <p class="player-name">Opponent (<span id="opponent-symbol">O</span>)</p>
+                    <small id="opponent-address-ingame"></small>
+                    <div class="turn-indicator">Opponent's Turn</div>
+                </div>
+            </div>
+             <div class="game-footer">
+                Prize Pool: <strong><span id="prize-pool">200</span> GT</strong>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

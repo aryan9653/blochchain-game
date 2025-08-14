@@ -1,0 +1,24 @@
+{
+  "name": "game-platform",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "1. Install Node + npm (LTS).\r 2. Clone repo and cd into `game-platform`.\r 3. Copy envs:\r    ```bash\r    cp api/.env.example api/.env",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^6.1.0",
+    "hardhat": "^2.26.3"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.4.0",
+    "dotenv": "^17.2.1",
+    "uuid": "^11.1.0"
+  },
+  "directories": {
+    "test": "test"
+  }
+}
